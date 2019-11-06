@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--schema约束-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--包扫描-->
+    <context:component-scan base-package="com.itheima"/>
+
+    <!--AOP的注解支持-->
+    <aop:aspectj-autoproxy/>
+
+    <!--注册AccountDao-->
+    <bean id="accountDao02" class="com.itheima.dao.impl.AccountDaoImpl02">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <bean id="accountDao" class="com.itheima.dao.impl.AccountDaoImpl">
+
+    </bean>
+
+    <!--注册DataSource-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring?characterEncoding=utf8"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="root"></property>
+    </bean>
+
+    <!--注册JdbcTemplate-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--注册事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--通过构造方法注入DataSource-->
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <!--配置事务建议-->
+    <tx:advice id="txAdvice01" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" read-only="false" isolation="DEFAULT"/>
+            <tx:method name="find*" read-only="true" isolation="DEFAULT"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置AOP-->
+    <aop:config>
+        <!--配置切入点-->
+        <aop:pointcut id="pointcut01" expression="execution(* com.itheima.service.impl.*.*(..))"/>
+        <!--配置切面-->
+        <aop:advisor advice-ref="txAdvice01" pointcut-ref="pointcut01"/>
+    </aop:config>
+</beans>

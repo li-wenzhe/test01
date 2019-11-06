@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/spring_01_demo01" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_day02_annotate" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_day02_pure_annotate" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_day03_aop" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_day03_aop_annotate" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_day04_jdbc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_day04_xml_tx" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springmvc_day01_demo01" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springmvc_day02_demo01" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springmvc_day02_demo02_json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springmvc_day02_demo03_fileupload" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springmvc_day02_demo04_exception" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm_demo01" charset="UTF-8" />
+  </component>
+</project>

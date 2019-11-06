@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隔行换色</title>
+</head>
+<body>
+<!--要求：1~6行，要求奇数行和偶数行分别设置不同的背景色-->
+<!--1. 奇数行设置背景颜色-->
+<!--2. 偶数行设置背景颜色-->
+<!--思路：-->
+<!--获取所有的tr标签对象，循环遍历，根据索引i%2 区分奇偶-->
+<!--&ndash;&gt;-->
+<script>
+    //1.获取到所有的行tr标签对象
+    var rows = document.getElementsByTagName("tr");
+    for (var i = 1; i < rows.length; i++) {
+        if (i % 2) {
+            rows[i].style.backgroundColor = "lightblue";
+        }else{
+            rows[i].style.backgroundColor = "lightgreen";
+        }
+    }
+</script>
+</body>
+</html>

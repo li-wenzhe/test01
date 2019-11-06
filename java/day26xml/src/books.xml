@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<books>
+    <book id="book1" publish="人民大学出版社">
+        <name>金瓶梅</name>
+        <author>兰陵笑笑生</author>
+        <price>100</price>
+        <description>
+            if (a &lt; b &amp;&amp; c &gt; d){
+
+            }
+        </description>
+    </book>
+    <book id="book2" publish="机械工业出版社">
+        <name>水浒传</name>
+        <author>施耐庵</author>
+        <price>100</price>
+        <description>
+            <![CDATA[if(a < b && c > d){} ]]>
+        </description>
+    </book>
+    <magazine>
+        <name>读者</name>
+        <price>5</price>
+    </magazine>
+    <magazine>
+        <name>意林</name>
+        <price>5</price>
+    </magazine>
+</books>

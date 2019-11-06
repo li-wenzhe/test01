@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/login.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <form class="form-signin" action="/login" method="POST">
+        <div class="text-center">
+            <h2 class="form-signin-heading">登录页面</h2>
+        </div>
+        <label for="inputEmail" class="sr-only">用户名</label>
+        <input type="text" id="inputEmail" name="username" class="form-control" placeholder="用户名" required autofocus>
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="密码" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me" name="remember-me" id="rem"> 记住账号密码
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+
+</div> <!-- /container -->
+<script src="js/common.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+    //获取cookie
+    var username = cookie.getCookie("username")
+    var password = cookie.getCookie("password")
+    if(username!=undefined&&password!=undefined){
+        $('#inputEmail').val(username)
+        $('#inputPassword').val(password)
+        $('#rem').prop('checked','checked')
+    }
+
+
+</script>
+</body>
+</html>

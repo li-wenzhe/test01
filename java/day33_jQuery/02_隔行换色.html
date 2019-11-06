@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			table{
+				width: 500px;
+				margin: 0 auto;
+				border-collapse: collapse;
+			}
+			td,th{
+				border: 1px solid blue;
+				text-align: center;
+			}
+		
+			.evenTr{
+                /*偶数行样式*/
+                background-color: lightblue;
+            }
+            .oddTr{
+                /*奇数行样式*/
+                background-color: lightgreen;
+            }
+            .activeTr{
+                /*鼠标移入后 所在行样式*/
+                background-color: #ccc;
+            }
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<th>学号</th>
+				<th>姓名</th>
+				<th>年龄</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	    <script src="lib/jquery-3.3.1.min.js"></script>
+		<script>
+			$("tr:gt(0):odd").css("background-color","pink")/*偶数*/
+			$("tr:gt(0):even").css("background-color","red")/*奇数*/
+		</script>
+	</body>
+</html>

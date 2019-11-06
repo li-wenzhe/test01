@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--引入外部配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+
+    <!--注册连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!--注册SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--加载MyBatis的全局配置文件-->
+        <property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
+    </bean>
+
+    <!--配置Mapper扫描器--><!--作用:例如:dao层用xml方式时扫描UserMapper.xml-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.itheima.dao"></property>
+    </bean>
+
+    <!--开启AOP注解支持-->
+    <aop:aspectj-autoproxy/>
+
+    <!--配置事务-->
+    <!--注册事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入DataSource-->
+        <constructor-arg name="dataSource" ref="dataSource"></constructor-arg>
+    </bean>
+    <!--配置事务建议-->
+    <tx:advice id="txAdvice01" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" read-only="false" isolation="DEFAULT"/>
+            <tx:method name="find*" read-only="true" isolation="DEFAULT"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--配置AOP-->
+    <aop:config>
+        <!--配置切入点-->
+        <aop:pointcut id="pointcut01" expression="execution(* com.itheima.service.*.*(..))"/>
+        <!--配置切面-->
+        <aop:advisor advice-ref="txAdvice01" pointcut-ref="pointcut01"/>
+    </aop:config>
+
+</beans>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.health.dao.OrderDao">
+
+    <!--使用查询条件来查询(通用)-->
+    <select id="findOrderListByCondition" resultMap="orderResultMap" parameterType="com.itheima.health.pojo.Order">
+        SELECT * FROM t_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="memberId != null">
+                and member_id = #{memberId}
+            </if>
+            <if test="orderDate != null">
+                and orderDate = #{orderDate}
+            </if>
+            <if test="orderType != null">
+                and orderType = #{orderType}
+            </if>
+            <if test="orderStatus != null">
+                and orderStatus = #{orderStatus}
+            </if>
+            <if test="setmealId != null">
+                and setmeal_id = #{setmealId}
+            </if>
+        </where>
+    </select>
+    <resultMap id="orderResultMap" type="com.itheima.health.pojo.Order">
+        <id column="id" property="id"/>
+        <result column="member_id" property="memberId"/>
+        <result column="orderDate" property="orderDate"/>
+        <result column="orderType" property="orderType"/>
+        <result column="orderStatus" property="orderStatus"/>
+        <result column="setmeal_id" property="setmealId"/>
+    </resultMap>
+
+    <!--新增-->
+    <insert id="add" parameterType="com.itheima.health.pojo.Order">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_order (member_id,orderDate,orderType,orderStatus,setmeal_id) values (#{memberId},#{orderDate},#{orderType},#{orderStatus},#{setmealId})
+    </insert>
+
+    <!--使用订单id,查询订单信息-->
+    <select id="findById" parameterType="int" resultType="map">
+         select m.name member ,s.name setmeal,o.orderDate orderDate,o.orderType orderType from t_order o,t_member m,t_setmeal s where o.member_id=m.id and o.setmeal_id=s.id and o.id=#{id}
+    </select>
+
+    <!--预约人数-->
+    <select id="findOrderCountByDate" parameterType="string" resultType="int">
+        SELECT count(*) FROM t_order WHERE orderDate = #{date}
+    </select>
+
+    <!--到诊人数-->
+    <select id="findOrderVisitsByDate" resultType="int" parameterType="string">
+        SELECT count(*) FROM t_order WHERE orderDate = #{date} AND orderStatus = '已到诊'
+    </select>
+
+    <!--规定日期内预人数-->
+    <select id="findOrderCountBetweenDate" parameterType="map" resultType="int">
+        SELECT count(*) FROM t_order WHERE orderDate BETWEEN #{begin} AND #{end}
+    </select>
+
+    <!--规定日期内到诊人数-->
+    <select id="findOrderVisitsBetweenDate" resultType="int" parameterType="map">
+        SELECT count(*) FROM t_order WHERE orderDate BETWEEN #{begin} AND #{end} AND orderStatus = '已到诊'
+    </select>
+
+    <!--热门套餐-->
+    <select id="findHotSetmeal" resultType="map">
+        SELECT s.name,COUNT(o.`setmeal_id`) setmeal_count,COUNT(o.id)/(SELECT COUNT(id) FROM t_order) proportion FROM t_order o,t_setmeal s WHERE o.setmeal_id = s.id GROUP BY s.name ORDER BY setmeal_count DESC LIMIT 0,2
+    </select>
+</mapper>

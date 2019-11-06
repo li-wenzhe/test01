@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--properties:引入外部properties文件-->
+    <!--方式二
+             resource:引入相对路径
+    -->
+    <properties resource="jdbc.properties">
+        <!--方式一:
+                   property:
+                       name:key键
+                       value:值
+                   <property name="driver" value="${key}"/>
+        -->
+        <property name="key" value="com.mysql.jdbc.Driver"/>
+    </properties>
+
+    <settings>
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>
+
+    <!--定义单个别名-->
+    <!--<typeAliases>
+        &lt;!&ndash;type:类型的路径
+            alias:别名
+        &ndash;&gt;
+        <typeAlias type="com.itheima.domain.User" alias="user"/>
+    </typeAliases>-->
+
+    <!--批量定义别名-->
+    <typeAliases>
+        <package name="com.itheima.domain"></package>
+    </typeAliases>
+
+
+
+    <!--配置连接数据库的环境 default:指定使用哪一个环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--配置事务,MyBatis事务用的是jdbc-->
+            <transactionManager type="JDBC"/>
+            <!--配置连接池, POOLED:使用连接池(mybatis内置的); UNPOOLED:不使用连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--引入映射文件; resource属性: 映射文件的路径-->
+        <!--<mapper resource="${jdbc.UserMapper}"/>-->
+        <mapper resource="com/itheima/dao/UserMapper.xml"/>
+        <!--<mapper class="com.itheima.dao.UserMapper"/>-->
+        <!--<package name="com.itheima.dao"/>-->
+    </mappers>
+</configuration>

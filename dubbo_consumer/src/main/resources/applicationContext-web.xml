@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--1.Zookeeper中的应用名称,用在Zookeeper中管理dubbo注册、订阅的服务信息,名称不能重复-->
+    <dubbo:application name="dubbo_consumer"></dubbo:application>
+
+    <!--2.dubbo连接Zookeeper,Zookeeper启动的默认端口号是2181-->
+    <dubbo:registry address="zookeeper://192.168.182.128:2181"></dubbo:registry>
+
+    <!--.dubbo配置,支持注解(Controller的类上可以使用@Reference,用来调用服务)、支持配置文件-->
+    <dubbo:annotation package="com.itheima.controller"></dubbo:annotation>
+
+    <!-- 注解驱动 -->
+    <mvc:annotation-driven>
+        <!-- 指定http返回编码格式，不然返回ajax请求json会出现中文乱码 -->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>*/*;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+</beans>

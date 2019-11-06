@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全消全选</title>
+    <style type="text/css">
+        table {
+            width: 500px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid blue;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th style="width:100px;">
+            <input type="checkbox" id="checkall" title="全选/全消"onclick="check()" />
+            <input type="button" value="反选" onclick="inverse()">
+        </th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="item"/>
+        </td>
+        <td>1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="item"/>
+        </td>
+        <td>2</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="item"/>
+        </td>
+        <td>3</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="item"/>
+        </td>
+        <td>4</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="item"/>
+        </td>
+        <td>5</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="item"/>
+        </td>
+        <td>6</td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<script>
+    //全消全选,把item的checked状态改为与checkall的状态相同
+    function check(){
+        var cli = document.getElementById("checkall").checked;//.checked为标签的点击状态
+        var items = document.getElementsByClassName("item");
+        for (var i=0;i< items.length;i++){
+            items[i].checked=cli;
+        }
+    }
+
+    //反选,获取所有item,遍历,遍历的时候吧状态取反
+         // 2.遍历的时候把每一个item再点击一次
+    function inverse() {
+        var items = document.getElementsByClassName("item");
+        for (var i=0;i<items.length;i++){
+            items[i].checked=(!items[i].checked);
+            //2.items[i].click();
+        }
+    }
+</script>
+
+</body>
+</html>

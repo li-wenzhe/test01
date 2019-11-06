@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插入标签</title>
+</head>
+<body>
+<input type="button" value="插入到game内部最前面" id="btn1">
+<input type="button" value="插入到game内部最后" id="btn2">
+<input type="button" value="插入到wow前面" id="btn3">
+<input type="button" value="插入到wow后面" id="btn4">
+
+<ul id="game" class="c1">
+    <li>LOL</li>
+    <li id="wow">wow</li>
+    <li>DOTA</li>
+</ul>
+<script src="lib/jquery-3.3.1.min.js">/*引入jQuery*/</script>
+<script>
+    /*创建标签*/
+    var lia = $("<li>吃鸡</li>");
+    $("#btn1").click(function () {
+       /* $("#game").append(lia);*/
+        /*$("ul").append(lia)*/
+        $(".c1").append( lia)
+        alert(lia)
+        /*lia.appendTo($("#"))*/
+        /*lia.appendTo($("ul"))*/
+    });
+</script>
+</body>
+</html>

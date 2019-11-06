@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace属性:sql文件的映射文件的唯一标识--><!--原始dao开发方法-->
+<!--namespace属性: 接口类的全限定名--><!--myBatis的mapper接口,代理开发方法-->
+<!--<mapper namespace="UserMapper">-->
+<mapper namespace="UserMapper"><!--也是唯一标识-->
+    <!--id:crud节点的唯一标识(方法名)
+        resultType属性: 写方法返回值类型(如果是list,直接写实体类的全限定名),增删改的都是int,默认不用写
+        parameterType:传入查询语句的值的类型
+        标签体: sql语句
+    -->
+    <!--<select id="findById" resultType="user">
+        select * from user where id = #{id}
+    </select>-->
+    <select id="findById" resultType="user">
+    select * from user where 1=1
+    <if test="_parameter != null and _parameter != 0">
+        AND id = #{id}
+    </if>
+    </select>
+
+    <select id="findByUserName" resultType="user">
+        select * from user where username like concat('%',#{username},'%')
+    </select>
+
+    <insert id="addUser" parameterType="user" keyProperty="id">
+        INSERT INTO user(username,birthday,sex,address)
+        VALUE (#{username},
+                #{birthday},
+                #{sex},
+                #{address})
+    </insert>
+</mapper>

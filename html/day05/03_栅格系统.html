@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--把网站上的代码粘贴过来,修改文件地址-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>栅格系统</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <style> /*css的内部样式*/
+         div{
+             border:1px solid red;/*solid为实线*/
+         }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">1</div>
+        <div class="col-lg-2">1</div>
+        <div class="col-lg-2">1</div>
+        <div class="col-lg-2">1</div>
+        <div class="col-lg-2">1</div>
+    </div>
+    <!--第二行,中型设备-->
+    <div class="row">
+        <div class="col-md-3">2</div>
+        <div class="col-md-3">2</div>
+        <div class="col-md-3">2</div>
+        <div class="col-md-3">2</div>
+    </div>
+    <!--第三行,小型设备-->
+    <div class="row">
+        <div class="col-sm-4">3</div>
+        <div class="col-sm-4">3</div>
+        <div class="col-sm-4">3</div>
+    </div>
+    <!--第四行,超小型设备-->
+    <div class="row">
+        <div class="col-xs-6">4</div>
+        <div class="col-xs-6">4</div>
+    </div>
+    <!--第五行,混合-->
+    <div class="row">
+        <div class="col-lg-2">1</div>
+        <div class="col-sm-2">2</div>
+        <div class="col-xs-2">3</div>
+    </div>
+</div>
+
+
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

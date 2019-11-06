@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+<body>
+<div>
+    <span>会员注册</span>USER REGISTER
+    <form class="form-horizontal" style="margin-top: 5px;">
+        <table>
+            <tr>
+                <td>用户名</td>
+                <td>
+                    <input type="text" id="username" name="username" placeholder="请输入用户名">
+                    <span id="usernameInfo"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td>
+                    <input type="password" placeholder="请输入密码">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="注册"/>
+    </form>
+</div>
+
+<script src="./js/jquery-3.3.1.min.js"></script>
+<script>
+    $("#username").change(function () {
+        //Ajax请求到服务端
+        var params = "name="+this.value;
+
+        $.post("./demo1?action=isExist",params,function (result) {
+            if (result==="true"){
+                //用户名存在
+                $("#usernameInfo").html("用户名已存在").css("color","red");
+            }else{//用户名不存在
+                $("#usernameInfo").html("用户名可用").css("color","pink");
+            }
+        },"text")
+        if (params===null){
+            $("#usernameInfo").html("");
+        }
+    })
+</script>
+</body>
+</html>

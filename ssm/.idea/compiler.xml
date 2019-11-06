@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="day_01myBatis" />
+        <module name="day_02myBatis_Dao" />
+        <module name="spring_01_demo01" />
+        <module name="spring_day02_annotate" />
+        <module name="spring_day02_pure_annotate" />
+        <module name="spring_day03_aop" />
+        <module name="spring_day03_aop_annotate" />
+        <module name="spring_day04_jdbc" />
+        <module name="spring_day04_xml_tx" />
+        <module name="springmvc_day01_demo01" />
+        <module name="springmvc_day02_demo01" />
+        <module name="springmvc_day02_demo02_fileupload" />
+        <module name="springmvc_day02_demo02_json" />
+        <module name="springmvc_day02_demo02_json02" />
+        <module name="springmvc_day02_demo03_fileupload" />
+        <module name="springmvc_day02_demo04_exception" />
+        <module name="ssm_demo01" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="day_01myBatis" target="1.8" />
+      <module name="day_02myBatis_Dao" target="1.8" />
+      <module name="spring_01_demo01" target="1.8" />
+      <module name="spring_01_demo01 (1)" target="1.8" />
+      <module name="spring_day02_annotate" target="1.8" />
+      <module name="spring_day02_pure_annotate" target="1.8" />
+      <module name="spring_day03_aop" target="1.8" />
+      <module name="spring_day03_aop (1)" target="1.8" />
+      <module name="spring_day03_aop_annotate" target="1.8" />
+      <module name="spring_day04_jdbc" target="1.8" />
+      <module name="spring_day04_xml_tx" target="1.8" />
+      <module name="springmvc_day01_demo01" target="1.8" />
+      <module name="springmvc_day02_demo01" target="1.8" />
+      <module name="springmvc_day02_demo02_fileupload" target="1.8" />
+      <module name="springmvc_day02_demo02_json" target="1.8" />
+      <module name="springmvc_day02_demo02_json (1)" target="1.8" />
+      <module name="springmvc_day02_demo02_json02" target="1.8" />
+      <module name="springmvc_day02_demo03_fileupload" target="1.8" />
+      <module name="springmvc_day02_demo04_exception" target="1.8" />
+      <module name="ssm_demo01" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

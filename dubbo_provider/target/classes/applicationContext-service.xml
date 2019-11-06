@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--1.Zookeeper中的应用名称,用在Zookeeper中管理dubbo注册、订阅的服务信息,名称不能重复-->
+    <dubbo:application name="dubbo_provider"></dubbo:application>
+
+    <!--2.dubbo连接Zookeeper,Zookeeper启动的默认端口号是2181-->
+    <dubbo:registry address="zookeeper://192.168.182.128:2181"></dubbo:registry>
+
+    <!--3.服务提供者,定义dubbo连接的协议(RPC框架,支持的协议:dubbo(默认端口20880)、rmi、hession...)-->
+    <dubbo:protocol name="dubbo" port="20881"></dubbo:protocol>
+
+    <!--4.dubbo配置,支持注解(Service的类上可以使用@Service)、支持配置文件-->
+    <dubbo:annotation package="com.itheima.service"></dubbo:annotation>
+
+
+</beans>

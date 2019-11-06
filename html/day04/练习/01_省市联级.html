@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市联级</title>
+</head>
+<body>
+<!--//省份下拉框-->
+<select name="province" id="province">
+    <option id="xuanze" value="" onclick="province()">--选择省--</option>
+    <option value="gd" ><a href="javascript:void(0)" onmouseover="xxx()">GZ</a></option>
+    <option value="yn" onclick="addyn()">云南省</option>
+    <option value="sc" onclick="addsc()">四川省</option>
+
+</select>
+select.
+<!--城市下拉框-->
+<select name="city" id="city">
+    <option value="">--选择城市--</option>
+</select>
+
+<script>
+    function province() {
+        document.getElementById("xuanze").innerHTML="<option value=\"\">--选择城市--</option>";
+    }
+
+    function xxx(){
+       document.getElementById("city").innerHTML="<option value=\"gz\">广州</option>";
+    }
+</script>
+</body>
+</html>

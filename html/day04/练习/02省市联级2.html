@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市联级</title>
+</head>
+<body>
+<!--省下拉框-->
+<select name="province" id="province" onchange="yyy()">
+    <option value="">--选择省份--</option>
+    <option value="0">广东省</option>
+    <option value="1">云南省</option>
+    <option value="2">四川省</option>
+</select>
+
+<!--城市下拉框-->
+<select name="city" id="city">
+    <option value="">--选择城市--</option>
+</select>
+
+<!--城市数组-->
+<script>
+    var cities=[
+        ["广州","深圳","惠州"],
+        ["大理","丽江","昆明"],
+        ["成都","乐山"]
+    ];
+
+<!--add方法-->
+
+    function yyy(){
+        var city = document.getElementById("city");//id为city的标签,标签对象为city
+        city.innerHTML=" <option value=\"\">--选择城市--</option>";//把之前的清除,只保留提示选项
+
+        //把数组的值添加到对应的省份
+        var value = document.getElementById("province").value;//得到选择省份的value值,即索引
+        var cityarr = cities[value];//根据索引得到数组
+        for(var i = 0;i<cityarr.length;i++){//遍历数组
+            var cityName = cityarr[i];//遍历得到的值(城市)
+            var opt = document.createElement("option");//创建option标签
+            opt.innerHTML=cityName;//把城市添加到标签里,每次遍历都会创建新的标签,所以不会替换之前的
+            city.appendChild(opt);//把标签插入到city下拉框
+        }
+    }
+</script>
+</body>
+</html>

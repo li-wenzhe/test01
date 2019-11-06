@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        .content{
+            width:643px;
+            margin:50px auto;
+            text-align: center;
+        }
+        input[type='text']{
+            width:530px;
+            height:40px;
+            font-size: 14px;
+        }
+        input[type='button']{
+            width:100px;
+            height:46px;
+            background: #38f;
+            border: 0;
+            color: #fff;
+            font-size: 15px
+        }
+        .result{
+            /*position: absolute;*/
+            width: 535px;
+            border: 1px solid #999;
+            border-top: 0;
+            display: none;
+        }
+        .result div:hover{
+            background-color: #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <img alt="" src="img/logo.png"><br/><br/>
+    <input type="text" name="word" id="searchWord">
+    <input type="button" value="搜索一下">
+    <div class="result">
+		<div>张三</div>
+		<div>张三丰</div>
+	</div>
+</div>
+<script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $("#searchWord").keyup(function () {
+        //如果输入内容为空,则不需要发ajax
+        if (this.value===""){
+            //清空原有的结果列表清空
+            $(".result").empty();
+            return;
+        }
+
+        //发ajax请求,根据搜索框里的值,得到搜索结果,显示到列表里
+        var params = "name="+this.value;
+        $.post("./demo1?action=Search",params,function (result) {
+            //清空result里面原有的内容
+            $(".result").empty();
+
+            //如果result为空,不需要再显示
+            if(result===null||result.length===0){
+                //把框隐藏
+                $(".result").hide();
+                return;
+            }
+
+            //遍历接收的数据
+            for (var user of result){
+                //创建标签,插入result里
+                $("<div>"+user.name+"</div>").appendTo(".result");
+            }
+            //把result列表显示出来
+            $(".result").show();
+        },"json")
+    });
+
+    //自动填充:点击结果列表里的某一项,把这一项的内容设置到搜索框里,然后隐藏结果列表
+    //未来元素
+    $(".result").on("click","div",function () {
+        $("#searchWord").val(this.innerHTML);
+        $(".result").empty().hide();
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+</head>
+<body>
+<img src="../img/0.jpg" alt=""id="0"style="width: 100%">
+<script>
+    var number = 0;
+    setInterval(function () {
+        number++;
+        if (number>5){
+            number=0;
+        }
+        var id = document.getElementById("0");
+        id.src="../img/"+number+".jpg";
+    },2000)
+</script>
+</body>
+</html>

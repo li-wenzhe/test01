@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--注册AccountDao-->
+    <bean id="accountDao" class="com.itheima.dao.impl.AccountDaoImpl"></bean>
+
+    <!--注册accountService-->
+    <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl"></bean>
+
+    <!--注册增强配置类myAscept-->
+    <bean id="myAscept" class="com.itheima.utils.MyAscept"></bean>
+
+    <!--开启AOP注解-->
+    <aop:aspectj-autoproxy/>
+</beans>

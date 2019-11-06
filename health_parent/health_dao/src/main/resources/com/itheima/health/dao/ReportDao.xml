@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.health.dao.ReportDao">
+    <!--查询当前日期新增的会员-->
+    <select id="findTodayNewMember" resultType="int" parameterType="string">
+        SELECT count(*) FROM t_member WHERE regTime = #{today}
+    </select>
+
+
+</mapper>

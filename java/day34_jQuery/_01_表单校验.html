@@ -1,0 +1,204 @@
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>我的jquery表单校验页面</title>
+
+		<style type="text/css">
+			h1 {
+				text-align: center;
+			}
+			
+			table {
+				width: 80%;
+				margin: 0 auto;
+				border-collapse: collapse;
+			}
+			
+			td {
+				padding: 10px 14px;
+				border: 1px solid #999;
+			}
+			
+			.error {
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>员工信息录入</h1>
+		<form name="empForm" id="empForm" method="get" action="#">
+			<table>
+				<tr>
+					<td>真实姓名(不能为空 ,没有其他要求)</td>
+					<td><input type="text" id="realname" name="realname" />
+					</td>
+				</tr>
+				<tr>
+					<td>登录名(登录名不能为空,长度应该在5-8之间:</td>
+					<td><input type="text" id="username" name="username" /></td>
+				</tr>
+				<tr>
+					<td>密码(不能为空,长度6-12之间):</td>
+					<td><input type="password" id="pwd" name="pwd" /></td>
+				</tr>
+				<tr>
+					<td>重复密码密码(不能为空,长度6-12之间):</td>
+					<td><input type="password" id="pwd2" name="pwd2" /></td>
+				</tr>
+				<tr>
+					<td>性别(必选其一)</td>
+					<td>
+						<input type="radio" id="male" value="m" name="sex" />男
+						<input type="radio" id="female" value="f" name="sex" />女
+
+						<label for="sex" class="error"></label>
+					</td>
+				</tr>
+				<tr>
+					<td>年龄(必填26-50):</td>
+					<td><input type="text" id="age" name="age" /></td>
+				</tr>
+				<tr>
+					<td>你的学历:</td>
+					<td>
+						<select name="edu" id="edu">
+							<option value="">－请选择你的学历－</option>
+							<option value="a">专科</option>
+							<option value="b">本科</option>
+							<option value="c">研究生</option>
+							<option value="e">硕士</option>
+							<option value="d">博士</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>兴趣爱好:</td>
+					<td colspan="2">
+						<input type="checkbox" name="hobby" id="pp" value="0" />乒乓球
+						<input type="checkbox" name="hobby" id="ym" value="1" />羽毛球
+						<input type="checkbox" name="hobby" id="sw" value="2" />上网
+						<input type="checkbox" name="hobby" id="ly" value="3" />旅游
+						<input type="checkbox" name="hobby" id="gw" value="4" />购物
+
+						<label class="error" for="hobby"></label>
+					</td>
+				</tr>
+				<tr>
+					<td align="left">电子邮箱:</td>
+					<td><input type="text" id="email" name="email" /></td>
+				</tr>
+				<tr>
+					<td align="left">身份证(15-18):</td>
+					<td><input type="text" id="idcard" name="idcard" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" id="smtBtn" value="保存"></td>
+				</tr>
+			</table>
+		</form>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script>
+			$("#empForm").validate({
+                rules: {
+                    realname:{
+                        required:true
+					},
+					username:{
+                        required:true,
+						rangelength:[5,8]
+					},
+					pwd:{
+                        required:true,
+                        rangelength:[6,12]
+					},
+					pwd2:{
+                        required:true,
+                        rangelength:[6,12],
+						equalTo:"#pwd"
+					},
+					sex:{
+                        required:true
+					},
+					age:{
+                        required:true,
+						range:[26,50],
+						digits:true
+					},
+					edu:{
+                        required:true
+					},
+					hobby:{
+                        required:true
+					},
+					email:{
+                        required:true,
+						email:true
+					},
+					idcard:{
+                        required:true,
+						card:true
+					}
+				},
+                messages: {
+                    realname:{
+                        required:"请输入真实姓名"
+                    },
+                    username:{
+                        required:"请输入登录名",
+                        rangelength:"长度应该在5-8之间"
+                    },
+                    pwd:{
+                        required:"请输入密码",
+                        rangelength:"长度应该在6-12之间"
+                    },
+                    pwd2:{
+                        required:"请输入重复密码",
+                        rangelength:"长度应该在6-12之间",
+                        equalTo:"请保持前后密码一致"
+                    },
+                    sex:{
+                        required:"请输入性别"
+                    },
+                    age:{
+                        required:"请输入年龄",
+                        range:"年龄应该在26-50",
+                        digits:"年龄应为整数"
+                    },
+                    edu:{
+                        required:"请选择学历"
+                    },
+                    hobby:{
+                        required:"请选择兴趣爱好"
+                    },
+                    email:{
+                        required:"请输入邮箱",
+                        email:"邮箱格式错误"
+                    },
+                    idcard:{
+                        required:"请输入身份证",
+						card:"格式错误"
+                    }
+				}
+            });
+			$.validator.addMethod("card",function(value,element,params){
+                var reg = /^\d{15}(\d{2}[\dX])?$/i;
+                var result = reg.test(value);
+                //增加的要求：如果校验不通过，把表单项背景颜色变成绿色
+                if (!result) {
+                    $(element).css("background-color","green");
+                }else{
+                    $(element).css("background-color","pink");
+                }
+                return result;
+            }, "idcard number error");
+		</script>
+
+
+
+	</body>
+
+</html>

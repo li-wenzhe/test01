@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/springmvc_day01_demo01" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvc_day02_demo01" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvc_day02_demo02_json" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvc_day02_demo03_fileupload" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvc_day02_demo04_exception" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm_demo01" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/day_01myBatis/pom.xml" />
+        <option value="$PROJECT_DIR$/day_02myBatis_Dao/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_01_demo01/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_day02_annotate/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_day02_pure_annotate/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_day03_aop/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_day03_aop_annotate/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_day04_jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_day04_xml_tx/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc_day01_demo01/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc_day02_demo01/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc_day02_demo02_json/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc_day02_demo02_json02/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc_day02_demo03_fileupload/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc_day02_demo04_exception/pom.xml" />
+        <option value="$PROJECT_DIR$/ssm_demo01/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市联动</title>
+</head>
+<body>
+<select name="province" id="province" onchange="changeCity()">
+    <option value="">--选择省--</option>
+    <option value="0">广东省</option>
+    <option value="1">广西省</option>
+    <option value="2">山东省</option>
+    <option value="3">山西省</option>
+</select>
+<select name="city" id="city">
+    <option value="">--选择市--</option>
+</select>
+
+<script>
+    var cities = [
+        ["广州市","深圳市","惠州市"],
+        ["桂林市","柳州市","南宁市"],
+        ["济南市","烟台市","秦皇岛"],
+        ["太原市","阳泉市","大同市"]
+    ];
+
+    function changeCity(){
+        var city = document.getElementById("city");
+        //把city里之前的选项清除掉，只保留提示选项
+        city.innerHTML = "<option value=\"\">--选择市--</option>";
+
+        //1. 获取选择的省
+        var pro = document.getElementById("province").value;
+        //2. 省的值作为cities的索引，得到对应的市（数组）
+        var cityArr = cities[pro];
+        //3. 循环每个市
+        for (var i = 0; i < cityArr.length; i++) {
+            var cityName = cityArr[i];
+            //4. 创建一个option标签，把cityName放到option标签体里
+            var opt = document.createElement("option");
+            opt.innerHTML = cityName;
+            //5. 把option标签插入到city下拉框里
+            city.appendChild(opt);
+        }
+    }
+</script>
+</body>
+</html>
